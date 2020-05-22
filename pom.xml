@@ -14,7 +14,6 @@
         <spring.boot.version>2.1.5.RELEASE</spring.boot.version>
         <runtime.version>1.8</runtime.version>
         <project.encoding>UTF-8</project.encoding>
-        <jedis.version>2.9.0</jedis.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <sharding-sphere.version>3.0.0</sharding-sphere.version>
         <spring-boot-admin-starter-client.version>2.1.5</spring-boot-admin-starter-client.version>
@@ -27,14 +26,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -106,7 +97,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.9</version>
         </dependency>
 
         <!--代码生成器依赖-->
@@ -132,12 +123,6 @@
         </dependency>
 
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>
             <version>2.6.2</version>
@@ -150,24 +135,7 @@
             <version>22.0</version>
         </dependency>
 
-        <!-- 使用spring cloud config server -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.xuxueli</groupId>
-            <artifactId>xxl-job-core</artifactId>
-            <version>2.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-
+        <!--
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
@@ -179,32 +147,11 @@
             <artifactId>sharding-jdbc-core</artifactId>
             <version>${sharding-sphere.version}</version>
         </dependency>
-        <!-- spring-boot-admin -->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>${spring-boot-admin-starter-client.version}</version>
-        </dependency>
+        -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.qcloud</groupId>
-            <artifactId>cos_api</artifactId>
-            <version>5.2.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -214,15 +161,15 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.7</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>3.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.10</version>
         </dependency>
 
     </dependencies>
