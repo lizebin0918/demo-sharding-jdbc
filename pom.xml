@@ -87,7 +87,6 @@
             <version>2.6.2</version>
         </dependency>
 
-        <!--
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
@@ -99,7 +98,6 @@
             <artifactId>sharding-jdbc-core</artifactId>
             <version>${sharding-sphere.version}</version>
         </dependency>
-        -->
 
 
         <!--<dependency>

@@ -1,5 +1,8 @@
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.sinoxk.demo.Application;
+import com.sinoxk.demo.dao.entity.AdminUser;
 import com.sinoxk.demo.dao.mapper.AdminUserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +25,9 @@ public class AdminUserServiceTest {
 
     @Test
     public void test() {
-        System.out.println(JSON.toJSONString(adminUserMapper.selectList(null)));
+        LambdaQueryWrapper<AdminUser> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(AdminUser::getCustomerId, 1);
+        System.out.println(JSON.toJSONString(adminUserMapper.selectList(queryWrapper)));
     }
 
 }
