@@ -85,8 +85,8 @@
     </appender>
 
     <!-- 输出mybatis的sql语句到debug文件中-->
-    <logger name="com.sinoxk.order.dao.manager" level="error" additivity="true">
-        <appender-ref ref="ERROR-OUT"/>
+    <logger name="com.sinoxk.demo.dao" level="debug" additivity="true">
+        <appender-ref ref="STDOUT"/>
     </logger>
 
     <root level="info">

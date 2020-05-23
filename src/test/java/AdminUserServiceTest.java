@@ -26,7 +26,7 @@ public class AdminUserServiceTest {
     @Test
     public void test() {
         LambdaQueryWrapper<AdminUser> queryWrapper = Wrappers.lambdaQuery();
-        queryWrapper.eq(AdminUser::getCustomerId, 1);
+        queryWrapper.eq(AdminUser::getCustomerId, 2);
         System.out.println(JSON.toJSONString(adminUserMapper.selectList(queryWrapper)));
     }
 
