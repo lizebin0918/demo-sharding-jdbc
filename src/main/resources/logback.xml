@@ -89,7 +89,7 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <root level="info">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="ERROR-OUT"/>
         <appender-ref ref="INFO-OUT"/>
