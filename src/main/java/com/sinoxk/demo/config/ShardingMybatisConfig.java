@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 public class ShardingMybatisConfig {
 
     @Bean
-    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier(value = Constant.DATA_SOURCE) DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier(value = Constant.SHARDING_DATA_SOURCE) DataSource dataSource) throws Exception {
         MybatisSqlSessionFactoryBean factory = new MybatisSqlSessionFactoryBean();
         factory.setDataSource(dataSource);
         factory.setTypeAliasesPackage("com.sinoxk.demo.dao.entity");
