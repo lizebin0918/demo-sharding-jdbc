@@ -28,7 +28,7 @@ public class AdminCache {
     private DataSource adminDataSource;
 
     @Data
-    private static class Key {
+    public static class Key {
 
         private int customerId, year;
 
@@ -58,14 +58,14 @@ public class AdminCache {
         }
     }
 
-    private final Map<Key, String> CACHE = new HashMap<>();
+    private static final Map<Key, String> CACHE = new HashMap<>();
 
     /**
      * 根据customerId返回数据库名称
      * @param key
      * @return
      */
-    public String getDbName(Key key) {
+    public static String getDbName(Key key) {
         return CACHE.get(key);
     }
 

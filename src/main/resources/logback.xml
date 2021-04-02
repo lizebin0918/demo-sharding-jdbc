@@ -88,8 +88,11 @@
     <logger name="com.sinoxk.demo.dao" level="debug" additivity="true">
         <appender-ref ref="STDOUT"/>
     </logger>
+    <logger name="io.shardingsphere" level="debug" additivity="true">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="ERROR-OUT"/>
         <appender-ref ref="INFO-OUT"/>

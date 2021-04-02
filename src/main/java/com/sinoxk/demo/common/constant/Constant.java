@@ -21,4 +21,19 @@ public class Constant {
      */
     public static final String ADMIN_DATA_SOURCE = "adminDataSource";
 
+    /**
+     * sharding-jdbc复合分片键
+     */
+    public static final String SHARDING_COMPLEXKEY_FIRST = "customer_id";
+
+    /**
+     * sharding-jdbc复合分片键
+     */
+    public static final String SHARDING_COMPLEXKEY_SECOND = "year";
+
+    /**
+     * 系统支持最小的年份
+     */
+    public static final int MIN_START_YEAR = 2016;
+
 }
