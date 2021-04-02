@@ -19,7 +19,8 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class AdminUser implements Serializable {
+@TableName("t_order")
+public class Order implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -28,20 +29,9 @@ public class AdminUser implements Serializable {
 
     private Integer customerId;
 
-    /**
-     * 用户名称
-     */
-    private String userName;
+    private Integer year;
 
-    /**
-     * 登录名
-     */
-    private String loginName;
-
-    /**
-     * 登录密码
-     */
-    private String loginPwd;
+    private String orderNo;
 
     private Date ctime;
 

@@ -1,7 +1,7 @@
 package com.sinoxk.demo.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.sinoxk.demo.dao.entity.AdminUser;
+import com.sinoxk.demo.dao.entity.Order;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.sinoxk.demo.dao.entity.AdminUser;
  * @author chenpi
  * @since 2020-05-11
  */
-public interface AdminUserMapper extends BaseMapper<AdminUser> {
+public interface OrderMapper extends BaseMapper<Order> {
 
 }
