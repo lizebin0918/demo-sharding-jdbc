@@ -15,7 +15,7 @@
         <runtime.version>1.8</runtime.version>
         <project.encoding>UTF-8</project.encoding>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-        <sharding-sphere.version>3.0.0</sharding-sphere.version>
+        <sharding-sphere.version>3.1.0</sharding-sphere.version>
         <spring-boot-admin-starter-client.version>2.1.5</spring-boot-admin-starter-client.version>
 
     </properties>
