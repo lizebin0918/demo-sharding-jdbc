@@ -1,5 +1,6 @@
 package com.sinoxk.demo.config.sharding;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.*;
 import com.sinoxk.demo.common.constant.Constant;
 import io.shardingsphere.api.algorithm.sharding.*;
@@ -13,6 +14,12 @@ import java.util.*;
 public class TableComplexKeys implements ComplexKeysShardingAlgorithm {
     @Override
     public Collection<String> doSharding(Collection<String> tables, Collection<ShardingValue> columns) {
+
+        System.out.println("TableComplexKeys>>>>>>>>>>>>>>>>");
+        System.out.println(JSON.toJSONString(tables));
+        System.out.println(JSON.toJSONString(columns));
+        System.out.println("TableComplexKeys>>>>>>>>>>>>>>>>");
+
         //没有任何分片键
         if(columns.size()==0){
             throw new UnsupportedOperationException();
