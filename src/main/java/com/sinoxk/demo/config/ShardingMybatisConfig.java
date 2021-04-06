@@ -7,19 +7,22 @@ import com.sinoxk.demo.common.constant.Constant;
 import com.sinoxk.demo.config.interceptor.PageInterceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.*;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 @Configuration
 public class ShardingMybatisConfig {
 
+    @Resource
+    private DataSource dataSource;
+
     @Bean
-    public SqlSessionFactory sqlSessionFactoryBean(@Qualifier(value = Constant.SHARDING_DATA_SOURCE) DataSource dataSource) throws Exception {
+    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
         MybatisSqlSessionFactoryBean factory = new MybatisSqlSessionFactoryBean();
         factory.setDataSource(dataSource);
         factory.setTypeAliasesPackage("com.sinoxk.demo.dao.entity");

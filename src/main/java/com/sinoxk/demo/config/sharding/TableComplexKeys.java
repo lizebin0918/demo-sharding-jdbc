@@ -3,8 +3,11 @@ package com.sinoxk.demo.config.sharding;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.*;
 import com.sinoxk.demo.common.constant.Constant;
-import io.shardingsphere.api.algorithm.sharding.*;
-import io.shardingsphere.api.algorithm.sharding.complex.ComplexKeysShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.ShardingValue;
+import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingValue;
+import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
+import org.apache.shardingsphere.api.sharding.standard.RangeShardingValue;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -12,14 +15,16 @@ import java.util.*;
 /**
  */
 public class TableComplexKeys implements ComplexKeysShardingAlgorithm {
-    @Override
-    public Collection<String> doSharding(Collection<String> tables, Collection<ShardingValue> columns) {
 
+    @Override
+    public Collection<String> doSharding(Collection tables, ComplexKeysShardingValue columns) {
         System.out.println("TableComplexKeys>>>>>>>>>>>>>>>>");
         System.out.println(JSON.toJSONString(tables));
         System.out.println(JSON.toJSONString(columns));
         System.out.println("TableComplexKeys>>>>>>>>>>>>>>>>");
+        return Arrays.asList("t_order_1_2016");
 
+/*
         //没有任何分片键
         if(columns.size()==0){
             throw new UnsupportedOperationException();
@@ -78,6 +83,6 @@ public class TableComplexKeys implements ComplexKeysShardingAlgorithm {
         for (int y:years){
             result.add(table+"_"+customerId+"_"+y);
         }
-        return result;
+        return result;*/
     }
 }

@@ -11,13 +11,10 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring.boot.version>2.1.5.RELEASE</spring.boot.version>
+        <spring.boot.version>2.3.8.RELEASE</spring.boot.version>
         <runtime.version>1.8</runtime.version>
         <project.encoding>UTF-8</project.encoding>
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-        <sharding-sphere.version>3.1.0</sharding-sphere.version>
-        <spring-boot-admin-starter-client.version>2.1.5</spring-boot-admin-starter-client.version>
-
+        <sharding-sphere.version>4.1.1</sharding-sphere.version>
     </properties>
 
     <repositories>
@@ -42,6 +39,12 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>druid-spring-boot-starter</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -63,11 +66,6 @@
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
         <dependency>
@@ -102,14 +100,8 @@
         </dependency>
 
         <dependency>
-            <groupId>io.shardingsphere</groupId>
+            <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-            <version>${sharding-sphere.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-core</artifactId>
             <version>${sharding-sphere.version}</version>
         </dependency>
 
