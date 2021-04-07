@@ -37,6 +37,8 @@ public class AdminCache {
             this.year = year;
         }
 
+        public Key() {}
+
         public static Key build(int customerId, int year) {
             return new Key(customerId, year);
         }

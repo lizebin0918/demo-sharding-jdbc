@@ -10,15 +10,17 @@ import java.time.LocalDate;
 import java.util.*;
 
 /**
+ * 表分片
  */
-public class TableComplexKeys implements ComplexKeysShardingAlgorithm {
+public class TableSharding implements ComplexKeysShardingAlgorithm {
+
+    /**
+     * @param tables 表
+     * @param columns [{"columnName":"customer_id","logicTableName":"t_order","values":[2]},{"columnName":"year","logicTableName":"t_order","values":[2020]}]
+     * @return
+     */
     @Override
     public Collection<String> doSharding(Collection<String> tables, Collection<ShardingValue> columns) {
-
-        System.out.println("TableComplexKeys>>>>>>>>>>>>>>>>");
-        System.out.println(JSON.toJSONString(tables));
-        System.out.println(JSON.toJSONString(columns));
-        System.out.println("TableComplexKeys>>>>>>>>>>>>>>>>");
 
         //没有任何分片键
         if(columns.size()==0){
@@ -33,7 +35,7 @@ public class TableComplexKeys implements ComplexKeysShardingAlgorithm {
         for (ShardingValue item:columns){
             table = item.getLogicTableName();
             //连锁
-            if(item.getColumnName().equals(Constant.SHARDING_COMPLEXKEY_FIRST)){
+            if(item.getColumnName().equals(Constant.SHARDING_COMPLEXKEY_FIRST_CUSTOMER_ID)){
                 if(item instanceof PreciseShardingValue){
                     customerId = ((PreciseShardingValue<Integer>) item).getValue();
                 }
@@ -45,7 +47,7 @@ public class TableComplexKeys implements ComplexKeysShardingAlgorithm {
                 }
             }
 
-            if(item.getColumnName().equals(Constant.SHARDING_COMPLEXKEY_SECOND)){
+            if(item.getColumnName().equals(Constant.SHARDING_COMPLEXKEY_SECOND_YEAR)){
                 if(item instanceof PreciseShardingValue){
                     int year = ((PreciseShardingValue<Integer>) item).getValue();
                     years.add((year));

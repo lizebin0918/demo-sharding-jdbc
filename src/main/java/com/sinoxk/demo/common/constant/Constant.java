@@ -24,12 +24,17 @@ public class Constant {
     /**
      * sharding-jdbc复合分片键
      */
-    public static final String SHARDING_COMPLEXKEY_FIRST = "customer_id";
+    public static final String SHARDING_COMPLEXKEY_FIRST_CUSTOMER_ID = "customer_id";
 
     /**
      * sharding-jdbc复合分片键
      */
-    public static final String SHARDING_COMPLEXKEY_SECOND = "year";
+    public static final String SHARDING_COMPLEXKEY_SECOND_YEAR = "year";
+
+    /**
+     * 逻辑表
+     */
+    public static final String LOGIC_TABLE_ORDER = "t_order";
 
     /**
      * 系统支持最小的年份
