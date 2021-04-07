@@ -1,6 +1,6 @@
 # sharding-jdbc 实现分库分表，可动态配置（需重启）
 
-##官网地址
+## 官网地址
 * https://shardingsphere.apache.org/document/current/cn/overview/
 
 ### 常见问题
