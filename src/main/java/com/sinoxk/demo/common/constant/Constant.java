@@ -9,7 +9,7 @@ public class Constant {
     /**
      * sharding dataSource:必须是这个名字
      */
-    public static final String SHARDING_DATA_SOURCE = "dataSource";
+    public static final String SHARDING_DATA_SOURCE = "shardingDataSource";
 
     /**
      * sharding 事务相关

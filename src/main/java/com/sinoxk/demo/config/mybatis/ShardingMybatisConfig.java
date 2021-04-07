@@ -1,4 +1,4 @@
-package com.sinoxk.demo.config;
+package com.sinoxk.demo.config.mybatis;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
@@ -7,7 +7,6 @@ import com.sinoxk.demo.common.constant.Constant;
 import com.sinoxk.demo.config.interceptor.PageInterceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -15,16 +14,17 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-@Configuration
+
+//@Configuration
 public class ShardingMybatisConfig {
 
-    @Resource
-    private DataSource dataSource;
+    @Resource(name = Constant.SHARDING_DATA_SOURCE)
+    private DataSource shardingDataSource;
 
     @Bean
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
         MybatisSqlSessionFactoryBean factory = new MybatisSqlSessionFactoryBean();
-        factory.setDataSource(dataSource);
+        factory.setDataSource(shardingDataSource);
         factory.setTypeAliasesPackage("com.sinoxk.demo.dao.entity");
         //添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
