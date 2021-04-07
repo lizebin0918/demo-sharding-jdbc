@@ -1,8 +1,6 @@
 package com.sinoxk.demo.cache;
 
-import com.alibaba.fastjson.JSON;
 import com.sinoxk.demo.common.constant.Constant;
-import com.sinoxk.demo.config.datasource.AdminDataSourceConfig;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.DependsOn;

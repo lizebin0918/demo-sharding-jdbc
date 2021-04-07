@@ -1,83 +1,44 @@
 package com.sinoxk.demo.config.sharding;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.collect.*;
 import com.sinoxk.demo.common.constant.Constant;
-import io.shardingsphere.api.algorithm.sharding.*;
-import io.shardingsphere.api.algorithm.sharding.complex.ComplexKeysShardingAlgorithm;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingAlgorithm;
+import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingValue;
 
-import java.time.LocalDate;
 import java.util.*;
+
+import static com.sinoxk.demo.common.constant.Constant.LOGIC_TABLE_ORDER;
 
 /**
  * 表分片
  */
-public class TableSharding implements ComplexKeysShardingAlgorithm {
+@Slf4j
+public class TableSharding implements ComplexKeysShardingAlgorithm<Integer> {
 
-    /**
-     * @param tables 表
-     * @param columns [{"columnName":"customer_id","logicTableName":"t_order","values":[2]},{"columnName":"year","logicTableName":"t_order","values":[2020]}]
-     * @return
-     */
     @Override
-    public Collection<String> doSharding(Collection<String> tables, Collection<ShardingValue> columns) {
+    public Collection<String> doSharding(Collection<String> tables, ComplexKeysShardingValue<Integer> complexKeysShardingValue) {
 
-        //没有任何分片键
-        if(columns.size()==0){
-            throw new UnsupportedOperationException();
-        }
-        Collection<String> result = new LinkedHashSet<>(tables.size());
-        Integer customerId = null;
-        String table=null;
-        Set<Integer> years = Sets.newLinkedHashSet();
-        for (ShardingValue item:columns){
-            table = item.getLogicTableName();
-            //连锁
-            if(item.getColumnName().equals(Constant.SHARDING_COMPLEXKEY_FIRST_CUSTOMER_ID)){
-                if(item instanceof PreciseShardingValue){
-                    customerId = ((PreciseShardingValue<Integer>) item).getValue();
-                }
-                if(item instanceof RangeShardingValue){
-                    customerId = ((RangeShardingValue<Integer>) item).getValueRange().lowerEndpoint();
-                }
-                if(item instanceof ListShardingValue){
-                    customerId = Lists.newArrayList(((ListShardingValue<Integer>) item).getValues()).get(0);
-                }
-            }
+        log.info("TableSharding.complexKeysShardingValue --> " + JSON.toJSONString(complexKeysShardingValue));
 
-            if(item.getColumnName().equals(Constant.SHARDING_COMPLEXKEY_SECOND_YEAR)){
-                if(item instanceof PreciseShardingValue){
-                    int year = ((PreciseShardingValue<Integer>) item).getValue();
-                    years.add((year));
-                }
-                if(item instanceof RangeShardingValue){
-                    Range<Integer> range = ((RangeShardingValue) item).getValueRange();
-                    int lower = range.lowerEndpoint();
-                    int upper =  range.upperEndpoint();
-                    for (int i=lower;i<=upper;i++){
-                        years.add(i);
-                    }
-                }
-                if(item instanceof ListShardingValue){
-                    ((ListShardingValue<Integer>) item).getValues().forEach(v-> years.add(v));
-                }
-            }
-        }
-        if(Objects.isNull(customerId)){
-            throw new RuntimeException("未命中相对应连锁");
+        List<String> returnTables = new LinkedList<>();
+        String logicTable = complexKeysShardingValue.getLogicTableName();
+        if (!LOGIC_TABLE_ORDER.equalsIgnoreCase(logicTable)) {
+            return Collections.emptyList();
         }
 
-        //构造表
-        //如果没有命中时间
-        if(years.isEmpty()){
-            int now = LocalDate.now().getYear();
-            while (now>= Constant.MIN_START_YEAR){
-                years.add(now--);
+        List<String> tablePart = new ArrayList<>(3);
+        Collection<Integer> customerIds = complexKeysShardingValue.getColumnNameAndShardingValuesMap().get(Constant.SHARDING_COMPLEXKEY_FIRST_CUSTOMER_ID);
+        Collection<Integer> years = complexKeysShardingValue.getColumnNameAndShardingValuesMap().get(Constant.SHARDING_COMPLEXKEY_SECOND_YEAR);
+        for (int customerId : customerIds) {
+            for (int year : years) {
+                tablePart.add(logicTable);
+                tablePart.add(Objects.toString(customerId));
+                tablePart.add(Objects.toString(year));
+                returnTables.add(String.join("_", tablePart));
+                tablePart.clear();
             }
         }
-        for (int y:years){
-            result.add(table+"_"+customerId+"_"+y);
-        }
-        return result;
+        return returnTables;
     }
 }

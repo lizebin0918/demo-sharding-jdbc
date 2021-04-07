@@ -2,7 +2,6 @@ package com.sinoxk.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 
 /**
@@ -10,7 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @date: 2017/7/5 11:44
  * @description: 启动主类
  */
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
