@@ -27,8 +27,6 @@ public class TableSharding implements ComplexKeysShardingAlgorithm {
             throw new UnsupportedOperationException();
         }
         Collection<String> result = new LinkedHashSet<>(tables.size());
-        //具体表名称（连锁编号+时间）
-        //获取连锁(不支持多连锁查询)
         Integer customerId = null;
         String table=null;
         Set<Integer> years = Sets.newLinkedHashSet();

@@ -26,7 +26,7 @@ public class OrderServiceTest {
     @Test
     public void test() {
         LambdaQueryWrapper<Order> queryWrapper = Wrappers.lambdaQuery();
-        queryWrapper.eq(Order::getCustomerId, 2).eq(Order::getYear, 2020);
+        queryWrapper.eq(Order::getCustomerId, 3).eq(Order::getYear, 2020);
         System.out.println("------------------------------");
         System.out.println(JSON.toJSONString(orderMapper.selectList(queryWrapper)));
         System.out.println("------------------------------");

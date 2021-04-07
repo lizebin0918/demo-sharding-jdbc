@@ -108,12 +108,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-core</artifactId>
-            <version>${sharding-sphere.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>3.9.0</version>
